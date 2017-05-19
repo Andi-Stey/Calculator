@@ -29,18 +29,20 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
-            android:textColor="#ff0000"
-            android:text="C" />
+            android:layout_rowWeight="1"
+            android:text="C"
+            android:background="@drawable/button_border_bg"
+            android:textColor="#ff0000" />
 
         <Button
             android:id="@+id/btnDelete"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="del" />
 
         <Button
@@ -48,8 +50,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="÷" />
 
         <Button
@@ -57,8 +60,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="x" />
 
         <Button
@@ -66,8 +70,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="7" />
 
         <Button
@@ -75,8 +80,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="8" />
 
         <Button
@@ -84,8 +90,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="9" />
 
         <Button
@@ -93,8 +100,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="-" />
 
         <Button
@@ -102,8 +110,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="4" />
 
         <Button
@@ -111,8 +120,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="5" />
 
         <Button
@@ -120,8 +130,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="6" />
 
         <Button
@@ -129,8 +140,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="+" />
 
         <Button
@@ -138,8 +150,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="1" />
 
         <Button
@@ -147,8 +160,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="2" />
 
         <Button
@@ -156,8 +170,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="3" />
 
         <Button
@@ -165,10 +180,10 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="wrap_content"
             android:layout_height="94dp"
-            android:layout_rowSpan="2"
-            android:background="#ff8a05"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowSpan="2"
+            android:layout_rowWeight="1"
+            android:background="@drawable/calculate_button_border_bg"
             android:text="=" />
 
         <Button
@@ -176,8 +191,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="%" />
 
         <Button
@@ -185,8 +201,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="0" />
 
         <Button
@@ -194,8 +211,9 @@
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_rowWeight="1"
             android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:background="@drawable/button_border_bg"
             android:text="." />
 
     </GridLayout>
