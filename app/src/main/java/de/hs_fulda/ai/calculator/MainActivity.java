@@ -16,77 +16,92 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     }
 
     @Override
-    public void calculate() {
-
+    public void calculate()
+    {
+        //TODO
     }
 
     @Override
-    public void zero() {
-
+    public void zero()
+    {
+        //TODO
     }
 
     @Override
-    public void one() {
-
+    public void one()
+    {
+        //TODO
     }
 
     @Override
-    public void two() {
-
+    public void two()
+    {
+        //TODO
     }
 
     @Override
-    public void three() {
-
+    public void three()
+    {
+        //TODO
     }
 
     @Override
-    public void four() {
-
+    public void four()
+    {
+        //TODO
     }
 
     @Override
-    public void five() {
-
+    public void five()
+    {
+        //TODO
     }
 
     @Override
-    public void six() {
-
+    public void six()
+    {
+        //TODO
     }
 
     @Override
-    public void seven() {
-
+    public void seven()
+    {
+        //TODO
     }
 
     @Override
-    public void eight() {
-
+    public void eight()
+    {
+        //TODO
     }
 
     @Override
-    public void nine() {
-
+    public void nine()
+    {
+        //TODO
     }
 
     @Override
-    public void dot() {
-
+    public void dot()
+    {
+        //TODO
     }
 
     @Override
-    public void clear() {
-
+    public void clear()
+    {
+        //TODO
     }
 
     @Override
-    public void allClear() {
-
+    public void allClear()
+    {
+        //TODO
     }
 
     @Override
-    public void clearLastDigit() {
-
+    public void clearLastDigit()
+    {
+        //TODO
     }
 }
