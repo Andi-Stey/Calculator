@@ -6,5 +6,12 @@ package de.hs_fulda.ai.calculator.Repository;
 
 public interface IRepository
 {
-    
+    void multiply(double number1, double number2);
+
+    void divide(double number1, double number2);
+
+    void add(double number1, double number2);
+
+    void subtract(double number1, double number2);
+
 }
