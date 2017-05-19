@@ -11,31 +11,35 @@ public interface IRepository
      * Multiply two numbers.
      * @param number1
      * @param number2
+     * @return double - the calculated value.
      */
-    void multiply(double number1, double number2);
+    double multiply(double number1, double number2);
 
 
     /***
      * Divide two numbers.
      * @param number1
      * @param number2
+     * @return double - the calculated value.
      */
-    void divide(double number1, double number2);
+    double divide(double number1, double number2);
 
 
     /***
      * Add two numbers.
      * @param number1
      * @param number2
+     * @return double - the calculated value.
      */
-    void add(double number1, double number2);
+    double add(double number1, double number2);
 
 
     /***
      * Subtract two numbers.
      * @param number1
      * @param number2
+     * @return double - the calculated value.
      */
-    void subtract(double number1, double number2);
+    double subtract(double number1, double number2);
 
 }

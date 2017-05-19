@@ -10,26 +10,30 @@ public class Calculator implements IRepository
 {
 
     @Override
-    public void multiply(double number1, double number2)
+    public double multiply(double number1, double number2)
     {
         //TODO
+        return 0;
     }
 
     @Override
-    public void divide(double number1, double number2)
+    public double divide(double number1, double number2)
     {
         //TODO
+        return 0;
     }
 
     @Override
-    public void add(double number1, double number2)
+    public double add(double number1, double number2)
     {
         //TODO
+        return 0;
     }
 
     @Override
-    public void subtract(double number1, double number2)
+    public double subtract(double number1, double number2)
     {
         //TODO
+        return 0;
     }
 }
