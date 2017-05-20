@@ -42,8 +42,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         tvOverview.setShowSoftInputOnFocus(false);
         tvOverview.setMovementMethod(new ScrollingMovementMethod());
         //register OnClick-Methods
-        try
-        {
+
             calculate();
             clear();
             clear();
@@ -63,11 +62,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             subtract();
             multiply();
             divide();
-        }
-        catch (Exception ex)
-        {
-            Toast toast = Toast.makeText(this,"Oops there went something wrong!", Toast.LENGTH_SHORT);
-        }
+
 
     }
 
@@ -79,8 +74,14 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         btnCalculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setTextAfterOperation(OperationString.EQUALS);
-            }
+                try
+                {
+                    setTextAfterOperation(OperationString.EQUALS);
+                }
+                catch (Exception ex)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);}
+                }
         });
     }
 
@@ -93,8 +94,14 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             @Override
             public void onClick(View v)
             {
-                setTextOfEditText(Numbers.ZERO);
-            }
+                try
+                {
+                    setTextOfEditText(Numbers.ZERO);
+                }
+                catch (Exception ex)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);}
+                }
         });
     }
 
@@ -107,8 +114,14 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             @Override
             public void onClick(View v)
             {
-                setTextOfEditText(Numbers.ONE);
-            }
+                try
+                {
+                    setTextOfEditText(Numbers.ONE);
+                }
+                catch (Exception ex)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);}
+                }
         });
     }
 
@@ -121,9 +134,14 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             @Override
             public void onClick(View v)
             {
-                setTextOfEditText(Numbers.TWO);
-
-            }
+                try
+                {
+                    setTextOfEditText(Numbers.TWO);
+                }
+                catch (Exception ex)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);}
+                }
         });
     }
 
@@ -136,24 +154,33 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             @Override
             public void onClick(View v)
             {
-                setTextOfEditText(Numbers.THREE);
+                try
+                {
+                    setTextOfEditText(Numbers.THREE);
+                }
+                catch (Exception ex)
+                {
+                    Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);}
             }
         });
     }
 
+
     @Override
-    public void four()
-    {
+    public void four() {
         Button btnFour = (Button) findViewById(R.id.btnFour);
-        btnFour.setOnClickListener(new View.OnClickListener()
-        {
+        btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                setTextOfEditText(Numbers.FOUR);
+            public void onClick(View v) {
+                try {
+                    setTextOfEditText(Numbers.FOUR);
+                } catch (Exception ex) {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Oops there went something wrong!", Toast.LENGTH_SHORT);
+                }
             }
         });
     }
+
 
     @Override
     public void five()
