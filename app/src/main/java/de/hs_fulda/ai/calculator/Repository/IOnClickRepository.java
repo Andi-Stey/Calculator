@@ -85,12 +85,6 @@ public interface IOnClickRepository
 
 
     /***
-     * Action for pressing the 'AC'-Button.
-     */
-    void allClear();
-
-
-    /***
      * Action for pressing the '<x'-Button.
      */
     void clearLastDigit();
