@@ -94,4 +94,28 @@ public interface IOnClickRepository
      * Action for pressing the '<x'-Button.
      */
     void clearLastDigit();
+
+
+    /***
+     * Action for pressing the '<x'-Button.
+     */
+    void add();
+
+
+    /***
+     * Action for pressing the '<x'-Button.
+     */
+    void subtract();
+
+
+    /***
+     * Action for pressing the '<x'-Button.
+     */
+    void multiply();
+
+
+    /***
+     * Action for pressing the '<x'-Button.
+     */
+    void divide();
 }

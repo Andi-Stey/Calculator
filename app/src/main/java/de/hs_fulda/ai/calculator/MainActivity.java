@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import de.hs_fulda.ai.calculator.Classes.Calculator;
 import de.hs_fulda.ai.calculator.Classes.Numbers;
 import de.hs_fulda.ai.calculator.Repository.IOnClickRepository;
 
@@ -21,7 +22,11 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         setContentView(R.layout.activity_main);
 
         EditText editText = (EditText) findViewById(R.id.editInput) ;
+
+        //disable keyboard input on editText focus
         editText.setShowSoftInputOnFocus(false);
+
+        //register OnClick-Methods
         zero();
         one();
         two();
@@ -38,6 +43,21 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     @Override
     public void calculate()
     {
+        /*Calculator calculator = new Calculator();
+        final Button btnMultiply = (Button) findViewById(R.id.btnMultiply);
+        Button btnDivide = (Button) findViewById(R.id.btnDivide);
+        Button btnAdd = (Button) findViewById(R.id.btnAdd);
+        Button btnSubtract = (Button) findViewById(R.id.btnSubtract);
+
+        View.OnClickListener onClickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v == btnMultiply)
+                {
+                    calculator.multiply(getText())
+                }
+            }
+        }*/
         //TODO
     }
 
@@ -211,7 +231,32 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     @Override
     public void clearLastDigit()
     {
-        //TODO
+        TextView editInput = (TextView) findViewById(R.id.editInput);
+
+    }
+
+    @Override
+    public void add()
+    {
+
+    }
+
+    @Override
+    public void subtract()
+    {
+
+    }
+
+    @Override
+    public void multiply()
+    {
+
+    }
+
+    @Override
+    public void divide()
+    {
+
     }
 
     public String getText()
@@ -222,6 +267,11 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         return appendedNumber;
     }
 
+
+    /***
+     *
+     * @param number
+     */
     public void setTextOfEditText(Object number)
     {
         TextView editInput = (TextView) findViewById(R.id.editInput);
