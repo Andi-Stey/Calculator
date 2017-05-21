@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
 
             calculate();
             clear();
-            clear();
+            clearLastDigit();
             zero();
             one();
             two();
@@ -298,7 +298,19 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     @Override
     public void clearLastDigit()
     {
-        //TODO
+        Button btnDelete = (Button) findViewById(R.id.btnDelete);
+        btnDelete.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                if (!getText().isEmpty())
+                {
+                    String newText = getText().substring(0, getText().length()-1);
+                    editInput.setText(newText);
+                }
+            }
+        });
     }
 
     @Override
