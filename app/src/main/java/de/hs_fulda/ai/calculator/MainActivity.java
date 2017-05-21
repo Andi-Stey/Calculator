@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
 
     private double number1;
     private double number2;
-    private Calculator calculator;
     private boolean isAdd;
     private boolean isSubtract;
     private boolean isMultiply;
@@ -34,7 +33,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        calculator = new Calculator();
 
         Toast toast = Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT);
         toast.show();
@@ -94,6 +92,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 }
         });
     }
+
 
     /***
      * OnClick-Event for zero-Button.
@@ -612,189 +611,210 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     /***
      * Shows the calculation history in the TextView and set the input field depending on
      * which operation was clicked.
+     *
+     * (Could be split in separate methods, but grew along the application.
+     * Maybe someday it can be refactored...if necessary.)
+     *
      * @param operation - a mathematical operation-char-value of OperationString class.
      */
     private void presentCalculationOnScreen(char operation)
     {
-        Calculator calculator = new Calculator();
-
-        //if pressed operation-method is add or subtract or multiply or divide...
-        if(operation == OperationString.ADDITION || operation == OperationString.SUBTRACTION
-                || operation == OperationString.MULTIPLICATION || operation == OperationString.DIVISION)
+        try
         {
-            //and if input field is not empty
-            if(!getText().isEmpty()) {
-                //and if it is the second number to calculate with...
-                if ((getText().contains(String.valueOf(OperationString.ADDITION))) || (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
-                        || (getText().contains(String.valueOf(OperationString.MULTIPLICATION))) || (getText().contains(String.valueOf(OperationString.DIVISION))))
-                {
-                    //show the value of the pressed Button in the input field
-                    tvOverview.append(getText() + "\n");
+            Calculator calculator = new Calculator();
 
-                    //get only the numeric value
-                    String helper = getText().substring(getText().indexOf(" ")).trim();
-
-                    //if helper is empty set number2 to zero
-                    if (helper.isEmpty())
+            //if pressed operation-method is add or subtract or multiply or divide...
+            if(operation == OperationString.ADDITION || operation == OperationString.SUBTRACTION
+                    || operation == OperationString.MULTIPLICATION || operation == OperationString.DIVISION)
+            {
+                //and if input field is not empty
+                if(!getText().isEmpty()) {
+                    //and if it is the second number to calculate with...
+                    if ((getText().contains(String.valueOf(OperationString.ADDITION))) || (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
+                            || (getText().contains(String.valueOf(OperationString.MULTIPLICATION))) || (getText().contains(String.valueOf(OperationString.DIVISION))))
                     {
+                        //show the value of the pressed Button in the input field
+                        tvOverview.append(getText() + "\n");
+
+                        //get only the numeric value
+                        String helper = getText().substring(getText().indexOf(" ")).trim();
+
+                        //if helper is empty set number2 to zero
+                        if (helper.isEmpty())
+                        {
+                            number2 = 0;
+                        }
+                        //if helper is not empty, set number2 to the numeric value of the input field
+                        if (!helper.isEmpty())
+                        {
+                            number2 = Double.parseDouble(helper);
+                        }
+
+                        //if the input field contains an addition-sign...
+                        if (getText().contains(String.valueOf(OperationString.ADDITION)))
+                        {
+                            //calculate result of addition out of number1 and number2...
+                            number1 = calculator.add(number1, number2);
+                            //and show the result in the TextView
+                            tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                            isAdd =false;
+                        }
+                        //else if the input field contains a subtraction-sign...
+                        else if (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
+                        {
+                            //calculate result of subtraction out of number1 and number2...
+                            number1 = calculator.subtract(number1, number2);
+                            //and show the result in the TextView
+                            tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                            isSubtract = false;
+                        }
+                        //else if the input field contains a multiplication-sign...
+                        else if (getText().contains(String.valueOf(OperationString.MULTIPLICATION)))
+                        {
+                            //calculate result of multiplication out of number1 and number2...
+                            number1 = calculator.multiply(number1, number2);
+                            //and show the result in the TextView
+                            tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                            isMultiply = false;
+                        }
+                        //else if the input field contains a division-sign...
+                        else if (getText().contains(String.valueOf(OperationString.DIVISION)))
+                        {
+                            //calculate result of division out of number1 and number2...
+                            number1 = calculator.divide(number1, number2);
+                            //and show the result in the TextView
+                            tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                            isDivide = false;
+                        }
+
+                        //set the input-field text to the operation sign and separate it with space from the next numeric input.
+                        editInput.setText(String.valueOf(operation) + " ");
+
+                        //set value of number2 to zero
                         number2 = 0;
                     }
-                    //if helper is not empty, set number2 to the numeric value of the input field
-                    if (!helper.isEmpty())
+                    //if the input-field text does not contain any operation sign
+                    else
                     {
-                        number2 = Double.parseDouble(helper);
-                    }
+                        //set the TextView to the value of the input-field
+                        tvOverview.setText(getText() + "\n");
 
-                    //if the input field contains an addition-sign...
-                    if (getText().contains(String.valueOf(OperationString.ADDITION)))
-                    {
-                        //calculate result of addition out of number1 and number2...
-                        number1 = calculator.add(number1, number2);
-                        //and show the result in the TextView
-                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
-                        isAdd =false;
+                        //set number1 to the number of the input-field
+                        number1 = Double.parseDouble(getText());
+
+                        //and set input field-text to 'operation ' (example: '+ ')
+                        editInput.setText(String.valueOf(operation) + " ");
                     }
-                    //else if the input field contains a subtraction-sign...
-                    else if (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
+                }
+            }
+            //if the pressed button is the equals-button (btnCalculate)
+            else if(operation == OperationString.EQUALS)
+            {
+                //and if the input-field text contains a mathematical operation sign (+-x÷)
+                if ((getText().contains(String.valueOf(OperationString.ADDITION)))
+                        || (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
+                        || (getText().contains(String.valueOf(OperationString.MULTIPLICATION)))
+                        || (getText().contains(String.valueOf(OperationString.DIVISION))))
+                {
+                    //and if the operation that was pressed is addition...
+                    if(isAdd == true)
                     {
-                        //calculate result of subtraction out of number1 and number2...
+                        //show the add sign and the number in the TextView
+                        tvOverview.append(getText() + "\n");
+
+                        //get only the number of the input-field value...
+                        String helper = getText().substring(getText().indexOf(" ")).trim();
+                        //set value of number2 to the number-value that was extracted the step before...
+                        number2 = Double.parseDouble(helper);
+
+                        //calculate the result
+                        number1 = calculator.add(number1, number2);
+                        //show it in the TextView and separate the calculation by a line from the next calculation...
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
+
+                        //set the text of the input-field to the result of the calculation, in case user is going to calculate again with this value...
+                        editInput.setText(String.valueOf(number1));
+
+                        //reset number2
+                        number2 = 0;
+
+                        //reset isAdd
+                        isAdd = false;
+                    }
+                    //xor the operation that was pressed is subtraction...
+                    else if(isSubtract == true)
+                    {
+                        //look at comments in the if-block above
+                        tvOverview.append(getText() + "\n");
+
+                        String helper = getText().substring(getText().indexOf(" ")).trim();
+                        number2 = Double.parseDouble(helper);
+
                         number1 = calculator.subtract(number1, number2);
-                        //and show the result in the TextView
-                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
+
+                        editInput.setText(String.valueOf(number1));
+
+                        number2 = 0;
+
+                        //reset isSubtract
                         isSubtract = false;
                     }
-                    //else if the input field contains a multiplication-sign...
-                    else if (getText().contains(String.valueOf(OperationString.MULTIPLICATION)))
+                    //xor the operation that was pressed is multiplication...
+                    else if(isMultiply == true)
                     {
-                        //calculate result of multiplication out of number1 and number2...
+                        //look at comment in the elseif-block above
+                        tvOverview.append(getText() + "\n");
+
+                        String helper = getText().substring(getText().indexOf(" ")).trim();
+                        number2 = Double.parseDouble(helper);
+
                         number1 = calculator.multiply(number1, number2);
-                        //and show the result in the TextView
-                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
+
+                        editInput.setText(String.valueOf(number1));
+
+                        number2 = 0;
+
+                        //reset isMultiply
                         isMultiply = false;
                     }
-                    //else if the input field contains a division-sign...
-                    else if (getText().contains(String.valueOf(OperationString.DIVISION)))
+                    //xor the operation that was pressed is division...
+                    else if(isDivide == true)
                     {
-                        //calculate result of division out of number1 and number2...
+                        //look at comment in the elseif-block above
+                        tvOverview.append(getText() + "\n");
+
+                        String helper = getText().substring(getText().indexOf(" ")).trim();
+                        number2 = Double.parseDouble(helper);
+
                         number1 = calculator.divide(number1, number2);
-                        //and show the result in the TextView
-                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
+
+                        editInput.setText(String.valueOf(number1));
+
+                        number2 = 0;
+
+                        //reset isDivide
                         isDivide = false;
                     }
-
-                    //set the input-field text to the operation sign and separate it with space from the next numeric input.
-                    editInput.setText(String.valueOf(operation) + " ");
-
-                    //set value of number2 to zero
-                    number2 = 0;
-                }
-                //if the input-field text does not contain any operation sign
-                else
-                {
-                    //set the TextView to the value of the input-field
-                    tvOverview.setText(getText() + "\n");
-
-                    //set number1 to the number of the input-field
-                    number1 = Double.parseDouble(getText());
-
-                    //and set input field-text to 'operation ' (example: '+ ')
-                    editInput.setText(String.valueOf(operation) + " ");
                 }
             }
         }
-        //if the pressed button is the equals-button (btnCalculate)
-        else if(operation == OperationString.EQUALS)
+        catch (Exception ex)
         {
-            //and if the input-field text contains a mathematical operation sign (+-x÷)
-            if ((getText().contains(String.valueOf(OperationString.ADDITION)))
-                    || (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
-                    || (getText().contains(String.valueOf(OperationString.MULTIPLICATION)))
-                    || (getText().contains(String.valueOf(OperationString.DIVISION))))
-            {
-                //and if the operation that was pressed is addition...
-                if(isAdd == true)
-                {
-                    //show the add sign and the number in the TextView
-                    tvOverview.append(getText() + "\n");
+            isDivide = false;
+            isSubtract = false;
+            isAdd = false;
+            isMultiply = false;
 
-                    //get only the number of the input-field value...
-                    String helper = getText().substring(getText().indexOf(" ")).trim();
-                    //set value of number2 to the number-value that was extracted the step before...
-                    number2 = Double.parseDouble(helper);
+            number1 = 0;
+            number2 = 0;
 
-                    //calculate the result
-                    number1 = calculator.add(number1, number2);
-                    //show it in the TextView and separate the calculation by a line from the next calculation...
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
-
-                    //set the text of the input-field to the result of the calculation, in case user is going to calculate again with this value...
-                    editInput.setText(String.valueOf(number1));
-
-                    //reset number2
-                    number2 = 0;
-
-                    //reset isAdd
-                    isAdd = false;
-                }
-                //xor the operation that was pressed is subtraction...
-                else if(isSubtract == true)
-                {
-                    //look at comments in the if-block above
-                    tvOverview.append(getText() + "\n");
-
-                    String helper = getText().substring(getText().indexOf(" ")).trim();
-                    number2 = Double.parseDouble(helper);
-
-                    number1 = calculator.subtract(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
-
-                    editInput.setText(String.valueOf(number1));
-
-                    number2 = 0;
-
-                    //reset isSubtract
-                    isSubtract = false;
-                }
-                //xor the operation that was pressed is multiplication...
-                else if(isMultiply == true)
-                {
-                    //look at comment in the elseif-block above
-                    tvOverview.append(getText() + "\n");
-
-                    String helper = getText().substring(getText().indexOf(" ")).trim();
-                    number2 = Double.parseDouble(helper);
-
-                    number1 = calculator.multiply(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
-
-                    editInput.setText(String.valueOf(number1));
-
-                    number2 = 0;
-
-                    //reset isMultiply
-                    isMultiply = false;
-                }
-                //xor the operation that was pressed is division...
-                else if(isDivide == true)
-                {
-                    //look at comment in the elseif-block above
-                    tvOverview.append(getText() + "\n");
-
-                    String helper = getText().substring(getText().indexOf(" ")).trim();
-                    number2 = Double.parseDouble(helper);
-
-                    number1 = calculator.divide(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n" + OperationString.DIVIDER + "\n");
-
-                    editInput.setText(String.valueOf(number1));
-
-                    number2 = 0;
-
-                    //reset isDivide
-                    isDivide = false;
-                }
-            }
-
+            editInput.setText("0");
+            tvOverview.append("Wait..., what? Please calculate again!" + "\n" + OperationString.DIVIDER + "\n");
+            Toast toast = Toast.makeText(getApplicationContext(), "Oops there went something wrong! - Please calculate again!", Toast.LENGTH_SHORT);
+            toast.show();
         }
     }
 }
