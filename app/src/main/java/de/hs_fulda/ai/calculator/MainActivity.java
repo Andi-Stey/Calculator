@@ -649,7 +649,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         {
                             number2 = Double.parseDouble(helper);
                         }
-
                         //if the input field contains an addition-sign...
                         if (getText().contains(String.valueOf(OperationString.ADDITION)))
                         {
