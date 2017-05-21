@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     private boolean isDivide;
     private boolean isCleared;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
