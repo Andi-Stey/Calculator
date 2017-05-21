@@ -35,6 +35,8 @@
             android:layout_marginRight="10dp"
             android:ems="10"
             android:focusable="false"
+            android:singleLine="true"
+            android:text="0"
             android:textAlignment="textEnd" />
 
     </LinearLayout>
@@ -217,7 +219,8 @@
             android:layout_columnWeight="1"
             android:layout_rowWeight="1"
             android:background="@drawable/button_border_bg"
-            android:text="%" />
+            android:text="%"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/btnZero"

@@ -17,5 +17,4 @@ public final class Numbers
     public static final int EIGHT = 8;
     public static final int NINE = 9;
     public static final char DOT = '.';
-
 }
