@@ -1,12 +1,9 @@
 package de.hs_fulda.ai.calculator;
 
-import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -19,8 +16,10 @@ import de.hs_fulda.ai.calculator.Repository.IOnClickRepository;
 
 public class MainActivity extends AppCompatActivity implements IOnClickRepository
 {
-    EditText editInput;
-    TextView tvOverview;
+    private EditText editInput;
+    private TextView tvOverview;
+    private Button btnClearClearAll;
+
     private double number1;
     private double number2;
     private Calculator calculator;
@@ -36,13 +35,18 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         calculator = new Calculator();
+        btnClearClearAll = (Button) findViewById(R.id.btnClearClearAll);
+
+        //disable keyboard for all textual views
         tvOverview = (TextView) findViewById(R.id.tvOverview);
         editInput = (EditText) findViewById(R.id.editInput) ;
         editInput.setShowSoftInputOnFocus(false);
         tvOverview.setShowSoftInputOnFocus(false);
-        tvOverview.setMovementMethod(new ScrollingMovementMethod());
-        //register OnClick-Methods
 
+        //enable scrolling for the TextView
+        tvOverview.setMovementMethod(new ScrollingMovementMethod());
+
+        //register OnClick-Methods
             calculate();
             clear();
             clearLastDigit();
@@ -62,11 +66,13 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             subtract();
             multiply();
             divide();
-
-
     }
 
 
+    /***
+     * OnClick-Event for calculate-Button.
+     *
+     */
     @Override
     public void calculate()
     {
@@ -76,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v) {
                 try
                 {
-                    setTextAfterOperation(OperationString.EQUALS);
+                    presentCalculationOnScreen(OperationString.EQUALS);
                 }
                 catch (Exception ex)
                 {
@@ -97,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 try
                 {
                     setTextOfEditText(Numbers.ZERO);
+                    isCleared = false;
+                    btnClearClearAll.setText("C");
                 }
                 catch (Exception ex)
                 {
@@ -117,6 +125,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 try
                 {
                     setTextOfEditText(Numbers.ONE);
+                    isCleared = false;
+                    btnClearClearAll.setText("C");
                 }
                 catch (Exception ex)
                 {
@@ -137,6 +147,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 try
                 {
                     setTextOfEditText(Numbers.TWO);
+                    isCleared = false;
+                    btnClearClearAll.setText("C");
                 }
                 catch (Exception ex)
                 {
@@ -157,6 +169,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 try
                 {
                     setTextOfEditText(Numbers.THREE);
+                    isCleared = false;
+                    btnClearClearAll.setText("C");
                 }
                 catch (Exception ex)
                 {
@@ -172,9 +186,13 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         btnFour.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
+                try
+                {
                     setTextOfEditText(Numbers.FOUR);
-                } catch (Exception ex) {
+                    isCleared = false;
+                    btnClearClearAll.setText("C");
+                }
+                catch (Exception ex) {
                     Toast toast = Toast.makeText(getApplicationContext(), "Oops there went something wrong!", Toast.LENGTH_SHORT);
                 }
             }
@@ -192,6 +210,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.FIVE);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -206,6 +226,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.SIX);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -220,6 +242,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.SEVEN);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -234,6 +258,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.EIGHT);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -248,6 +274,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.NINE);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -262,6 +290,8 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             public void onClick(View v)
             {
                 setTextOfEditText(Numbers.DOT);
+                isCleared = false;
+                btnClearClearAll.setText("C");
             }
         });
     }
@@ -269,7 +299,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     @Override
     public void clear()
     {
-        final Button btnClearClearAll = (Button) findViewById(R.id.btnClearClearAll);
         btnClearClearAll.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -326,7 +355,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 isDivide = false;
                 isMultiply = false;
                 isSubtract = false;
-                setTextAfterOperation(OperationString.ADD);
+                presentCalculationOnScreen(OperationString.ADD);
             }
         });
     }
@@ -344,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 isDivide = false;
                 isMultiply = false;
                 isSubtract = true;
-                setTextAfterOperation(OperationString.SUBTRACT);
+                presentCalculationOnScreen(OperationString.SUBTRACT);
             }
         });
     }
@@ -362,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 isDivide = false;
                 isMultiply = true;
                 isSubtract = false;
-                setTextAfterOperation(OperationString.MULTIPLY);
+                presentCalculationOnScreen(OperationString.MULTIPLY);
             }
         });
     }
@@ -380,7 +409,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 isDivide = true;
                 isMultiply = false;
                 isSubtract = false;
-                setTextAfterOperation(OperationString.DIVIDE);
+                presentCalculationOnScreen(OperationString.DIVIDE);
             }
         });
     }
@@ -412,18 +441,22 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
      */
     public void setTextOfEditText(Object digit)
     {
+        //if the pressed button is an instance of Character (like a '.' is)...
         if (digit instanceof Character)
         {
+            //and if the pressed button was the '.'-button...
             if ((char)digit == Numbers.DOT)
             {
-                //only one dot is possible
+                //and if there is no dot in the input field yet...
                 if (!getText().contains(String.valueOf(Numbers.DOT)))
                 {
+                    //show a dot into the input field.
                     editInput.setText(getText() + String.valueOf(digit));
                 }
-                //if the dot is the first digit, put a zero before it: . --> 0.
+                //and if the dot is the first digit...
                 if (getText().length()==1 && getText().contains(String.valueOf(Numbers.DOT)))
                 {
+                    //put a zero before it: "." --> "0.".
                     editInput.setText(Numbers.ZERO + String.valueOf(digit));
                 }
             }
@@ -445,68 +478,62 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
     }
 
 
-
-    private void setTextAfterOperation(char operation)
+    /***
+     * Shows the calculation history in the TextView and set the input field depending on
+     * which operation was clicked.
+     * @param operation - a mathematical operation-char-value of OperationString class.
+     */
+    private void presentCalculationOnScreen(char operation)
     {
         Calculator calculator = new Calculator();
 
+        //if pressed operation-method is add or subtract or multiply or divide...
         if(operation == OperationString.ADD || operation == OperationString.SUBTRACT
                 || operation == OperationString.MULTIPLY || operation == OperationString.DIVIDE)
         {
-            //if it is the first number to calculate with store it in number1-variable
-            if ((getText().contains(String.valueOf(OperationString.ADD)))
-                    || (getText().contains(String.valueOf(OperationString.SUBTRACT)))
-                    || (getText().contains(String.valueOf(OperationString.MULTIPLY)))
-                    || (getText().contains(String.valueOf(OperationString.DIVIDE ))))
-            {
+            //and if input field is not empty
+            if(!getText().isEmpty()) {
+                //and if it is the second number to calculate with...
+                if ((getText().contains(String.valueOf(OperationString.ADD)))
+                        || (getText().contains(String.valueOf(OperationString.SUBTRACT)))
+                        || (getText().contains(String.valueOf(OperationString.MULTIPLY)))
+                        || (getText().contains(String.valueOf(OperationString.DIVIDE)))) {
+                    //show the value of the pressed Button in the input field
+                    tvOverview.append(getText() + "\n");
 
-                tvOverview.append(getText() + "\n");
-                String helper = getText().substring(getText().indexOf(" ")).trim();
-                if(helper.isEmpty() )
-                {
+                    String helper = getText().substring(getText().indexOf(" ")).trim();
+                    if (helper.isEmpty()) {
+                        number2 = 0;
+                    }
+                    if (!helper.isEmpty()) {
+                        number2 = Double.parseDouble(helper);
+
+                    }
+
+                    if (getText().contains(String.valueOf(OperationString.ADD))) {
+                        number1 = calculator.add(number1, number2);
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                    } else if (getText().contains(String.valueOf(OperationString.SUBTRACT))) {
+                        number1 = calculator.subtract(number1, number2);
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                    } else if (getText().contains(String.valueOf(OperationString.MULTIPLY))) {
+                        number1 = calculator.multiply(number1, number2);
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                    } else if (getText().contains(String.valueOf(OperationString.DIVIDE))) {
+                        number1 = calculator.divide(number1, number2);
+                        tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
+                    }
+
+                    editInput.setText(String.valueOf(operation) + " ");
+
                     number2 = 0;
+                } else {
+                    tvOverview.setText(getText() + "\n");
+
+                    number1 = Double.parseDouble(getText());
+                    //and set input field-text to 'operation ' (example: '+ ')
+                    editInput.setText(String.valueOf(operation) + " ");
                 }
-                if (!helper.isEmpty())
-                {
-                    number2 = Double.parseDouble(helper);
-
-                }
-
-                if (getText().contains(String.valueOf(OperationString.ADD)))
-                {
-                    number1 = calculator.add(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
-                }
-
-                else if (getText().contains(String.valueOf(OperationString.SUBTRACT)))
-                {
-                    number1 = calculator.subtract(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
-                }
-
-                else if (getText().contains(String.valueOf(OperationString.MULTIPLY)))
-                {
-                    number1 = calculator.multiply(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
-                }
-
-                else if (getText().contains(String.valueOf(OperationString.DIVIDE)))
-                {
-                    number1 = calculator.divide(number1, number2);
-                    tvOverview.append(OperationString.SUMLINE + "\n" + number1 + "\n");
-                }
-
-                editInput.setText(String.valueOf(operation) + " ");
-
-                number2 = 0;
-            }
-            else
-            {
-                tvOverview.setText(getText() + "\n");
-
-                number1 = Double.parseDouble(getText());
-                //and set input field-text to 'operation ' (example: '+ ')
-                editInput.setText(String.valueOf(operation) + " ");
             }
         }
 
