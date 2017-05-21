@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             eight();
             nine();
             dot();
-
             add();
             subtract();
             multiply();
