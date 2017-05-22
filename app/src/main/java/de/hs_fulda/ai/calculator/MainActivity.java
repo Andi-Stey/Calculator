@@ -14,6 +14,7 @@ import de.hs_fulda.ai.calculator.Classes.Numbers;
 import de.hs_fulda.ai.calculator.Classes.OperationString;
 import de.hs_fulda.ai.calculator.Repository.IOnClickRepository;
 
+
 public class MainActivity extends AppCompatActivity implements IOnClickRepository
 {
     private EditText editInput;
@@ -50,24 +51,24 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
         tvOverview.setMovementMethod(new ScrollingMovementMethod());
 
         //register OnClick-Methods
-            calculate();
-            clear();
-            clearLastDigit();
-            zero();
-            one();
-            two();
-            three();
-            four();
-            five();
-            six();
-            seven();
-            eight();
-            nine();
-            dot();
-            add();
-            subtract();
-            multiply();
-            divide();
+        calculate();
+        clear();
+        clearLastDigit();
+        zero();
+        one();
+        two();
+        three();
+        four();
+        five();
+        six();
+        seven();
+        eight();
+        nine();
+        dot();
+        add();
+        subtract();
+        multiply();
+        divide();
     }
 
 
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 {
                     Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);
                 }
-                }
+            }
         });
     }
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                     Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                }
+            }
         });
     }
 
@@ -145,7 +146,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                     Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                }
+            }
         });
     }
 
@@ -173,7 +174,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                     Toast toast = Toast.makeText(getApplicationContext(),"Oops there went something wrong!", Toast.LENGTH_SHORT);
                     toast.show();
                 }
-                }
+            }
         });
     }
 
@@ -636,8 +637,19 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         //show the value of the pressed Button in the input field
                         tvOverview.append(getText() + "\n");
 
-                        //get only the numeric value
-                        String helper = getText().substring(getText().indexOf(" ")).trim();
+                        String helper = "";
+
+                        //if it is not a negative number but a operation sign
+                        if (getText().contains(" "))
+                        {
+                            //get only the numeric value
+                            helper = getText().substring(getText().indexOf(" ")).trim();
+                        }
+                        //if it is a negative number
+                        else
+                        {
+                            number2 = Double.parseDouble(getText());
+                        }
 
                         //if helper is empty set number2 to zero
                         if (helper.isEmpty())
@@ -707,17 +719,14 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                 }
             }
             //if the pressed button is the equals-button (btnCalculate)
-            else if(operation == OperationString.EQUALS)
-            {
-                //and if the input-field text contains a mathematical operation sign (+-x÷)
+            else if(operation == OperationString.EQUALS) {
+                //and if the input-field text contains a mathematical operation sign (+-xÃ·)
                 if ((getText().contains(String.valueOf(OperationString.ADDITION)))
                         || (getText().contains(String.valueOf(OperationString.SUBTRACTION)))
                         || (getText().contains(String.valueOf(OperationString.MULTIPLICATION)))
-                        || (getText().contains(String.valueOf(OperationString.DIVISION))))
-                {
+                        || (getText().contains(String.valueOf(OperationString.DIVISION)))) {
                     //and if the operation that was pressed is addition...
-                    if(isAdd == true)
-                    {
+                    if (isAdd == true) {
                         //show the add sign and the number in the TextView
                         tvOverview.append(getText() + "\n");
 
@@ -741,8 +750,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         isAdd = false;
                     }
                     //xor the operation that was pressed is subtraction...
-                    else if(isSubtract == true)
-                    {
+                    else if (isSubtract == true) {
                         //look at comments in the if-block above
                         tvOverview.append(getText() + "\n");
 
@@ -760,8 +768,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         isSubtract = false;
                     }
                     //xor the operation that was pressed is multiplication...
-                    else if(isMultiply == true)
-                    {
+                    else if (isMultiply == true) {
                         //look at comment in the elseif-block above
                         tvOverview.append(getText() + "\n");
 
@@ -779,8 +786,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         isMultiply = false;
                     }
                     //xor the operation that was pressed is division...
-                    else if(isDivide == true)
-                    {
+                    else if (isDivide == true) {
                         //look at comment in the elseif-block above
                         tvOverview.append(getText() + "\n");
 
@@ -798,6 +804,10 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
                         isDivide = false;
                     }
                 }
+                else
+                {
+                    number1 =  Double.parseDouble(getText());
+                }
             }
         }
         catch (Exception ex)
@@ -811,7 +821,7 @@ public class MainActivity extends AppCompatActivity implements IOnClickRepositor
             number2 = 0;
 
             editInput.setText("0");
-            tvOverview.append("Wait..., what? Please calculate again!" + "\n" + OperationString.DIVIDER + "\n");
+            tvOverview.append("Wait..., what? Please calculate again!" + "\n" +ex.toString() +"\n" + OperationString.DIVIDER + "\n");
             Toast toast = Toast.makeText(getApplicationContext(), "Oops there went something wrong! - Please calculate again!", Toast.LENGTH_SHORT);
             toast.show();
         }
