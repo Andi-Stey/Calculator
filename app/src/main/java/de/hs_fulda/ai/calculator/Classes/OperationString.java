@@ -8,7 +8,7 @@ public final class OperationString
 {
     private static String divisionSign = "÷";
     public static final String SUMLINE = "__________";
-    public static final String DIVIDER = "--------------------";
+    public static final String DIVIDER = "- - - - - - - - - - -";
     public static final char ADDITION = '+';
     public static final char SUBTRACTION = '-';
     public static final char MULTIPLICATION = 'x';

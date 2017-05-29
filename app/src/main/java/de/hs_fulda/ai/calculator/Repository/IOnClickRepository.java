@@ -9,107 +9,107 @@ public interface IOnClickRepository
     /***
      * Action for pressing the '='-Button.
      */
-    void calculate();
+    void calculateBtnClicked();
 
 
     /***
      * Action for pressing the '0'-Button.
      */
-    void zero();
+    void zeroBtnClicked();
 
 
     /***
      * Action for pressing the '1'-Button.
      */
-    void one();
+    void oneBtnClicked();
 
 
     /***
      * Action for pressing the '2'-Button.
      */
-    void two();
+    void twoBtnClicked();
 
 
     /***
      * Action for pressing the '3'-Button.
      */
-    void three();
+    void threeBtnClicked();
 
 
     /***
      * Action for pressing the '4'-Button.
      */
-    void four();
+    void fourBtnClicked();
 
 
     /***
      * Action for pressing the '5'-Button.
      */
-    void five();
+    void fiveBtnClicked();
 
 
     /***
      * Action for pressing the '6'-Button.
      */
-    void six();
+    void sixBtnClicked();
 
 
     /***
      * Action for pressing the '7'-Button.
      */
-    void seven();
+    void sevenBtnClicked();
 
 
     /***
      * Action for pressing the '8'-Button.
      */
-    void eight();
+    void eightBtnClicked();
 
 
     /***
      * Action for pressing the '9'-Button.
      */
-    void nine();
+    void nineBtnClicked();
 
 
     /***
      * Action for pressing the '.'-Button.
      */
-    void dot();
+    void dotBtnClicked();
 
 
     /***
      * Action for pressing the 'C'-Button.
      */
-    void clear();
+    void clearBtnClicked();
 
 
     /***
      * Action for pressing the '<x'-Button.
      */
-    void clearLastDigit();
+    void clearLastDigitBtnClicked();
 
 
     /***
      * Action for pressing the '<x'-Button.
      */
-    void add();
+    void addBtnClicked();
 
 
     /***
      * Action for pressing the '<x'-Button.
      */
-    void subtract();
+    void subtractBtnClicked();
 
 
     /***
      * Action for pressing the '<x'-Button.
      */
-    void multiply();
+    void multiplyBtnClicked();
 
 
     /***
      * Action for pressing the '<x'-Button.
      */
-    void divide();
+    void divideBtnClicked();
 }
